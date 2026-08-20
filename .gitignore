@@ -1,0 +1,26 @@
+# Secrets
+.env
+
+# Runtime data
+data/
+case/
+*.log
+
+# Frontend build artifacts
+frontend/node_modules/
+frontend/dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/

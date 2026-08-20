@@ -1,0 +1,26 @@
+services:
+  filmora-webui:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: filmora-webui:1.0.0
+    container_name: filmora-webui
+    ports:
+      - "8000:8000"
+    environment:
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:-admin123}"
+      SECRET_KEY: "${SECRET_KEY:-change-me-to-a-long-random-string}"
+      DATA_DIR: /data
+      PORT: 8000
+      T2V_PROVIDER: "${T2V_PROVIDER:-local}"
+      T2V_API_BASE: "${T2V_API_BASE:-}"
+      T2V_API_KEY: "${T2V_API_KEY:-}"
+      API_KEYS: "${API_KEYS:-}"
+      PUBLIC_BASE_URL: "${PUBLIC_BASE_URL:-http://127.0.0.1:8000}"
+      MAX_UPLOAD_MB: "${MAX_UPLOAD_MB:-2048}"
+    volumes:
+      - filmora_data:/data
+    restart: unless-stopped
+
+volumes:
+  filmora_data:

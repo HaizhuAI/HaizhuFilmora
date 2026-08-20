@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html, body, #root { height: 100%; }
+body {
+  @apply bg-ink-0 text-txt-1 font-sans antialiased;
+  background-image: linear-gradient(rgba(255,255,255,.012) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.012) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+::selection { background: rgba(245,184,65,.3); }
+* { scrollbar-width: thin; scrollbar-color: #2a2e38 transparent; }
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: #2a2e38; border-radius: 4px; }
+*::-webkit-scrollbar-track { background: transparent; }
+
+@layer components {
+  .panel { @apply bg-ink-1/90 border border-line/70 rounded-xl shadow-panel; }
+  .panel-2 { @apply bg-ink-2/90 border border-line/60 rounded-lg; }
+  .input { @apply w-full bg-ink-0/70 border border-line rounded-lg px-3 py-2 text-sm text-txt-1 placeholder:text-txt-3 outline-none transition focus:border-gold-400/60 focus:shadow-glow; }
+  .label { @apply block text-[11px] font-semibold uppercase tracking-[0.14em] text-txt-3 mb-1.5; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3.5 py-2 text-sm font-medium transition select-none disabled:opacity-40 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-gold-400 text-ink-0 hover:bg-gold-300 active:scale-[.98] shadow-[0_4px_16px_rgba(245,184,65,.25)]; }
+  .btn-ghost { @apply btn bg-transparent text-txt-2 hover:text-txt-1 hover:bg-white/5 border border-transparent; }
+  .btn-outline { @apply btn border border-line text-txt-2 hover:text-txt-1 hover:border-txt-3 hover:bg-white/[.03]; }
+  .btn-danger { @apply btn bg-ember/10 text-ember border border-ember/25 hover:bg-ember/20; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full border border-line px-2.5 py-0.5 text-xs text-txt-2; }
+  .mono { @apply font-mono text-[12px] tracking-tight; }
+  .cell { @apply px-4 py-3 text-sm; }
+}

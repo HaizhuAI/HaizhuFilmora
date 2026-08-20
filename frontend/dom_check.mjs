@@ -1,0 +1,15 @@
+import { chromium } from 'playwright-core'
+const browser = await chromium.launch({ executablePath: '/snap/bin/chromium', args: ['--no-sandbox'] })
+const page = await browser.newPage()
+const logs = []
+page.on('console', m => logs.push(m.type() + ': ' + m.text()))
+page.on('pageerror', e => logs.push('PAGEERROR: ' + e))
+await page.goto('http://127.0.0.1:8001/login', { waitUntil: 'networkidle' })
+await page.fill('#pw', 'admin123')
+await page.click('button[type=submit]')
+await page.waitForTimeout(2500)
+console.log('URL:', page.url())
+const body = await page.evaluate(() => document.body.innerText.slice(0, 400))
+console.log('BODY:', JSON.stringify(body))
+console.log('LOGS:', JSON.stringify(logs.slice(0, 8)))
+await browser.close()
